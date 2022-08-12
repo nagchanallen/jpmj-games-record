@@ -1,16 +1,25 @@
 # jpmj_games_record
 
-A new Flutter project.
+麻雀記録帳
+JPMJ Games Record
+
+麻雀ゲームの試合状況を記録するアプリです。
+An application used to take record during Japanese Mahjong games.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisite
 
-A few resources to get you started if this is your first Flutter project:
+Flutter version: 3.0.5+
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Install Dependencies
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+flutter pub get
+```
+
+### Run app in CLI
+
+```
+flutter run -d <DEVICE_NAME>
+```
