@@ -22,6 +22,12 @@ Flutter version: 3.0.5+
 flutter pub get
 ```
 
+### Run Code Generator
+
+```
+flutter pub run build_runner build
+```
+
 ### Run app in CLI
 
 ```
