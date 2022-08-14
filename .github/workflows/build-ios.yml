@@ -1,0 +1,22 @@
+name: Build IOS App
+
+on:
+  push:
+    branches: ['master']
+  pull_request:
+    branches: ['master']
+
+jobs:
+  test:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          architecture: x64
+      - run: make get-dependencies
+      # Todo: Add the flutter test when there are tests
+      # - run: flutter test
+      - run: make build-ios
