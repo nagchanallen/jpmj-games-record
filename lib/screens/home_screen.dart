@@ -1,10 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:jpmj_games_record/models/game/game_config.dart';
+import 'package:jpmj_games_record/models/game/game_player.dart';
+import 'package:jpmj_games_record/models/game/game_state.dart';
+import 'package:jpmj_games_record/providers/game_state.dart';
+import 'package:jpmj_games_record/screens/game_screen.dart';
+import 'package:uuid/uuid.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    void startNewGame() {
+      var uuid = const Uuid();
+      final newGameState = GameState(
+        id: uuid.v4(),
+        createdAt: DateTime.now(),
+        currentRound: 0,
+        honba: 0,
+        kyoutaku: 0,
+        downPlayer: GamePlayer(
+          name: "Player 1",
+          initPosition: 0,
+          mochiten: defaultGameConfig.initMochiten,
+          isRiichi: false,
+        ),
+        rightPlayer: GamePlayer(
+          name: "Player 2",
+          initPosition: 1,
+          mochiten: defaultGameConfig.initMochiten,
+          isRiichi: false,
+        ),
+        upPlayer: GamePlayer(
+          name: "Player 3",
+          initPosition: 0,
+          mochiten: defaultGameConfig.initMochiten,
+          isRiichi: false,
+        ),
+        leftPlayer: GamePlayer(
+          name: "Player 4",
+          initPosition: 0,
+          mochiten: defaultGameConfig.initMochiten,
+          isRiichi: false,
+        ),
+        config: defaultGameConfig,
+      );
+      ref.read(gameStateProvider.notifier).resetGameState(newGameState);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const GameScreen(),
+        ),
+      );
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -17,9 +67,9 @@ class HomeScreen extends StatelessWidget {
               ),
               Container(
                 margin: const EdgeInsets.all(4.0),
-                child: const ElevatedButton(
-                  onPressed: null,
-                  child: Text("試合開始"),
+                child: ElevatedButton(
+                  onPressed: startNewGame,
+                  child: const Text("試合開始"),
                 ),
               ),
               Container(
