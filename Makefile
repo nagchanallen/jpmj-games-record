@@ -5,6 +5,7 @@ generate-code:
 	flutter pub run build_runner build
 
 build-android:
+	flutter build apk
 	flutter build appbundle
 
 build-ios:
