@@ -2,13 +2,13 @@
 [![Commits](https://badgen.net/github/commits/nagchanallen/jpmj-games-record)](https://github.com/nagchanallen/jpmj-games-record)
 [![LastCommit](https://badgen.net/github/last-commit/nagchanallen/jpmj-games-record)](https://github.com/nagchanallen/jpmj-games-record/commits/master)
 
-# jpmj_games_record
+# jpmj-games-record
 
 麻雀記録帳</br>
 Japanese Mahjong Games Record
 
 麻雀ゲームの試合状況を記録するアプリです。</br>
-An application used to take record during Japanese Mahjong games.
+An application for taking game records during Japanese Mahjong games.
 
 ## Getting Started
 
