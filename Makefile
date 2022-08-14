@@ -9,6 +9,7 @@ build-android:
 
 build-ios:
 	flutter build ios \
+	--release \
 	--no-codesign
 
 app: get-dependencies generate-code
