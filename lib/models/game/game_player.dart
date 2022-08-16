@@ -1,18 +1,19 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hive/hive.dart';
 
 part 'game_player.freezed.dart';
 part 'game_player.g.dart';
 
 @freezed
 class GamePlayer with _$GamePlayer {
+  @HiveType(typeId: 3, adapterName: 'GamePlayerAdapter')
   const factory GamePlayer({
-    required String name,
-    required int initPosition, // 0: east, 1: south, 2: west, 3: north
-    required int mochiten,
-    required bool isRiichi,
+    @HiveField(0) required String name,
+    @HiveField(1)
+        required int initPosition, // 0: east, 1: south, 2: west, 3: north
+    @HiveField(2) required bool isRiichi,
   }) = _GamePlayer;
-
   factory GamePlayer.fromJson(Map<String, Object?> json) =>
       _$GamePlayerFromJson(json);
 
@@ -20,7 +21,6 @@ class GamePlayer with _$GamePlayer {
     return GamePlayer(
       name: name,
       initPosition: initPosition,
-      mochiten: 25000,
       isRiichi: false,
     );
   }
