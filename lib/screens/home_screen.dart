@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jpmj_games_record/models/game/game_config.dart';
 import 'package:jpmj_games_record/models/game/game_player.dart';
-import 'package:jpmj_games_record/models/game/game_state.dart';
-import 'package:jpmj_games_record/providers/game_state.dart';
+import 'package:jpmj_games_record/models/game/game_data.dart';
+import 'package:jpmj_games_record/providers/current_game.dart';
 import 'package:jpmj_games_record/screens/game_screen.dart';
 import 'package:uuid/uuid.dart';
 
@@ -14,39 +14,33 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     void startNewGame() {
       var uuid = const Uuid();
-      final newGameState = GameState(
+      final newGameData = GameData(
         id: uuid.v4(),
         createdAt: DateTime.now(),
-        currentRound: 0,
-        honba: 0,
-        kyoutaku: 0,
-        downPlayer: GamePlayer(
+        downPlayer: const GamePlayer(
           name: "Player 1",
           initPosition: 0,
-          mochiten: defaultGameConfig.initMochiten,
           isRiichi: false,
         ),
-        rightPlayer: GamePlayer(
+        rightPlayer: const GamePlayer(
           name: "Player 2",
           initPosition: 1,
-          mochiten: defaultGameConfig.initMochiten,
           isRiichi: false,
         ),
-        upPlayer: GamePlayer(
+        upPlayer: const GamePlayer(
           name: "Player 3",
           initPosition: 0,
-          mochiten: defaultGameConfig.initMochiten,
           isRiichi: false,
         ),
-        leftPlayer: GamePlayer(
+        leftPlayer: const GamePlayer(
           name: "Player 4",
           initPosition: 0,
-          mochiten: defaultGameConfig.initMochiten,
           isRiichi: false,
         ),
         config: defaultGameConfig,
+        transactions: [],
       );
-      ref.read(gameStateProvider.notifier).resetGameState(newGameState);
+      ref.read(currentGameProvider.notifier).resetGameData(newGameData);
       Navigator.push(
         context,
         MaterialPageRoute(
